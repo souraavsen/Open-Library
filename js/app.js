@@ -1,3 +1,5 @@
+// Getting the reference of button and others
+
 const search = document.getElementById("search");
 const input_field = document.getElementById("input_field");
 
@@ -8,6 +10,7 @@ const spinner = document.getElementById("spinner");
 const home_img = document.getElementById("home_img");
 const not_found = document.getElementById("not_found");
 
+// For the spinner settings
 const SpinnerLoader = (condition) => {
   if (condition === true) {
     spinner.style.display = "block";
@@ -18,6 +21,8 @@ const SpinnerLoader = (condition) => {
   }
 };
 
+
+// adding click event to search button
 search.addEventListener("click", () => {
   const value = input_field.value;
 
@@ -29,12 +34,14 @@ search.addEventListener("click", () => {
     .then((data) => display(data));
 });
 
+// this section is to display data in card
 const display = (data) => {
   if (data.docs.length !== 0) {
-    result.innerText = "Total Number of Books: " + data.docs.length;
+    result.innerText = "Total Number of Books: " + data.docs.length; //to display total number of book
     result.style.color = "green";
     result.style.fontWeight = "600";
   } else {
+    // this section is for handle error
     result.innerText = "Search with valid books name.";
     result.style.color = "red";
     result.style.fontWeight = "600";
@@ -42,8 +49,10 @@ const display = (data) => {
     SpinnerLoader(false);
   }
 
+  // this section is to display first 20 books
   const books = data.docs.slice(0, 20);
 
+  // this section is to card and display books
   books.forEach((book) => {
     const card = document.createElement("div");
     card.classList.add("col", "card", "m-0", "shadow");
@@ -53,6 +62,7 @@ const display = (data) => {
     let book_image;
     let first_publish;
 
+    // handle data which is not given or missing 
     if (book.publisher !== undefined) {
       if (book.publisher.length > 1) {
         publishers_name = book.publisher.slice(0, 1) + "...";
@@ -89,6 +99,7 @@ const display = (data) => {
       authors_name = "Not Mentioned";
     }
 
+    // creating card to display book details
     card.innerHTML = `
             <img
               class="card-img-top px-3 pt-3 mx-auto"
@@ -104,6 +115,8 @@ const display = (data) => {
               <p class="my-2" title="${book.publisher}">Publisher: <span class="text-success fw_semi">${publishers_name}</span></p>
               <p>First Published: <span class="text-success fw_semi">${first_publish}</span></p>
             </div>`;
+    
+    // inject card to div named card_container
     card_container.appendChild(card);
     SpinnerLoader(false);
     input_field.value = "";

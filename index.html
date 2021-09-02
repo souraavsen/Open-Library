@@ -23,6 +23,7 @@
     </head>
 
     <body>
+        <!-- Navbar -->
         <header>
             <nav class="navbar navbar-dark bg-dark">
                 <div class="container">
@@ -38,9 +39,11 @@
             </nav>
         </header>
 
+        <!-- main card container or section -->
         <main class="mb-5">
             <section class="container my-2">
                 <h4 class="text-center py-3">Find Your Essential Books Here.</h4>
+                <!-- Search box -->
                 <div class="input-group mb-3 w-50 mx-auto">
                     <input id="input_field" type="text" title="Search With Book Name or Your Expected Topic" class="form-control"
                         placeholder="Search Books"
@@ -54,12 +57,13 @@
             </section>
 
             <section class="container">
-
+                <!-- home page default img -->
                 <div class="w-100 d-flex justify-content-center">
                     <img id="home_img" width="38%" ; src="/images/library.gif"
                         alt="">
                 </div>
 
+                <!-- handle error message. It is display none by defalut(in style.css) -->
                 <div class="container-fluid d-flex justify-content-center">
                     <img id="not_found" width="42%" ;
                         src="/images/search-bar-unscreen.gif" alt="">
@@ -67,11 +71,13 @@
 
                 <h6 id="result" class="text-center mb-5 mx-auto"><h6 />
 
+                    <!-- Spinner -->
                         <div id="spinner" class="spinner">
                             <div class="dot1"></div>
                             <div class="dot2"></div>
                         </div>
 
+                        <!-- Books info cards holder -->
                         <div id="card_container"
                             class="gap-4 row row-cols-1 row-cols-lg-4
                             row-cols-md-4 justify-content-center">
